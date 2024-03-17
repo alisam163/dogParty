@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
+import HomePage from './pages/HomePage';
+import Favorites from './pages/Favorites';
+import NotFoundPage from './pages/NotFoundPage';
+import { FaDog } from "react-icons/fa6";
+
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <nav>
+      <Link to="/">
+        
+        <div className='logo'>
+            <FaDog size={70}/>
+          </div>
+        </Link>
+        <ul className='menu'>
+          <li className='menu_item'><Link to="/">Домашняя</Link></li>
+          <li className='menu_item'><Link to="/favorites">Избранное</Link></li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </div>
   );
 }
